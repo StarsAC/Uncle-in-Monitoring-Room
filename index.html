@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>监控室大爷 | Uncle-in-Monitoring-Room</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <h1>监控室大爷</h1>
+        <p>左边认房间，右边盯画面。</p>
+      </div>
+
+      <div class="upload-panel">
+        <div class="upload-actions">
+          <label class="upload-button" for="fileInput">
+            <span class="icon">+</span>
+            <span>请大爷上岗</span>
+          </label>
+          <button id="clearBtn" class="secondary-button" type="button">下班清空</button>
+        </div>
+
+        <input id="fileInput" class="file-input" type="file" accept=".json,application/json">
+
+        <div class="upload-meta">
+          <div id="fileStatus" class="meta-line"><strong>值班表：</strong><span>还没收到</span></div>
+          <div id="storageStatus" class="meta-line"><strong>记性：</strong><span>暂时没记住</span></div>
+        </div>
+      </div>
+
+      <div id="treeWrap" class="tree-wrap"></div>
+    </aside>
+
+    <main class="main">
+      <div class="main-header">
+        <h2 id="currentTitle">监控室今天还没开张</h2>
+        <p id="currentDesc">先把配置交给大爷。</p>
+      </div>
+
+      <div class="status-bar">
+        <div id="sourceStatus" class="pill">值班来源：未加载</div>
+        <div id="streamStatus" class="pill">盯梢画面：0 路</div>
+      </div>
+
+      <div id="playerGrid" class="player-grid"></div>
+      <div class="hint">`m3u8` 会优先走原生 HLS，不行再请 `hls.js` 帮忙。</div>
+    </main>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>
