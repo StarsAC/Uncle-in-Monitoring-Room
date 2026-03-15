@@ -30,6 +30,18 @@ function isStreamLeaf(value) {
   return values.length > 0 && values.every((item) => typeof item === "string");
 }
 
+function initializeExpandedNodes(data) {
+  expandedNodes.clear();
+
+  if (!isPlainObject(data)) {
+    return;
+  }
+
+  Object.keys(data).forEach((key) => {
+    expandedNodes.add(key);
+  });
+}
+
 function setFileStatus(name) {
   fileStatus.innerHTML = "<strong>值班表：</strong><span>" + name + "</span>";
 }
@@ -189,10 +201,7 @@ function createTreeNode(key, value, path, depth) {
     return item;
   }
 
-  const expanded = expandedNodes.has(path) || depth === 0;
-  if (depth === 0) {
-    expandedNodes.add(path);
-  }
+  const expanded = expandedNodes.has(path);
 
   const row = document.createElement("div");
   row.className = "tree-row branch";
@@ -263,6 +272,7 @@ function applyData(data, sourceLabel, options = {}) {
   }
 
   dataSource = data;
+  initializeExpandedNodes(data);
   sourceStatus.textContent = "值班来源：" + sourceLabel;
   renderTree();
   resetPlaybackState(
